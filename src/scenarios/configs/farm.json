@@ -1,0 +1,55 @@
+{
+  "name": "Agricultural Farm",
+  "description": "Farming operation with irrigation pumps and processing equipment",
+  "solar": {
+    "max_output_w": 5000,
+    "efficiency": 0.20
+  },
+  "battery": {
+    "capacity_wh": 10000,
+    "initial_charge_wh": 8000,
+    "max_charge_rate_w": 2000,
+    "max_discharge_rate_w": 2000
+  },
+  "loads": [
+    {
+      "name": "Irrigation Pump",
+      "power_draw_w": 2000,
+      "priority": 0,
+      "description": "Water pump for crops - CRITICAL"
+    },
+    {
+      "name": "Processing Equipment",
+      "power_draw_w": 500,
+      "priority": 1,
+      "description": "Crop processing - HIGH priority"
+    },
+    {
+      "name": "Barn Lighting",
+      "power_draw_w": 300,
+      "priority": 2,
+      "description": "General lighting - DEFERRABLE"
+    },
+    {
+      "name": "Workshop Tools",
+      "power_draw_w": 400,
+      "priority": 2,
+      "description": "Maintenance equipment - DEFERRABLE"
+    }
+  ],
+  "simulation": {
+    "duration_hours": 48,
+    "timestep_s": 60,
+    "start_hour": 6
+  },
+  "faults": [
+    {
+      "type": "load_spike",
+      "start_hour": 18,
+      "duration_hours": 2,
+      "load_name": "Irrigation Pump",
+      "spike_power_w": 500,
+      "description": "Evening irrigation cycle with higher pressure requirements"
+    }
+  ]
+}

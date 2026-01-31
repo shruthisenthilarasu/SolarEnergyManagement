@@ -1,0 +1,56 @@
+{
+  "name": "Remote Medical Clinic",
+  "description": "Off-grid healthcare facility requiring 24/7 critical medical equipment uptime",
+  "solar": {
+    "max_output_w": 2000,
+    "efficiency": 0.20
+  },
+  "battery": {
+    "capacity_wh": 5000,
+    "initial_charge_wh": 4000,
+    "max_charge_rate_w": 1000,
+    "max_discharge_rate_w": 1000
+  },
+  "loads": [
+    {
+      "name": "Medical Refrigeration",
+      "power_draw_w": 200,
+      "priority": 0,
+      "description": "Vaccine and medicine storage - CRITICAL"
+    },
+    {
+      "name": "Lighting",
+      "power_draw_w": 150,
+      "priority": 1,
+      "description": "Facility lighting - HIGH priority"
+    },
+    {
+      "name": "HVAC",
+      "power_draw_w": 800,
+      "priority": 2,
+      "description": "Climate control - DEFERRABLE"
+    }
+  ],
+  "simulation": {
+    "duration_hours": 48,
+    "timestep_s": 60,
+    "start_hour": 0
+  },
+  "faults": [
+    {
+      "type": "cloud_cover",
+      "start_hour": 8,
+      "duration_hours": 2,
+      "reduction_factor": 0.7,
+      "description": "Morning cloud cover reduces solar output by 70%"
+    },
+    {
+      "type": "load_spike",
+      "start_hour": 14,
+      "duration_hours": 1,
+      "load_name": "Lighting",
+      "spike_power_w": 100,
+      "description": "Additional medical procedures require extra lighting"
+    }
+  ]
+}
